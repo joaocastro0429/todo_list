@@ -1,14 +1,29 @@
-<h1>Todo List</h1>
-
-<%= link_to "New Task", new_task_path %>
-
-<ul>
-    <% @tasks.each do |task| %>
-    <li>
-        <%= task.title %> - <%= task.completed ? "Completed" : "Pending" %>
-      <%= link_to "Edit", edit_task_path(task) %>
-    <%= link_to "Delete", task_path(task), method: :delete, data: { confirm: "Are you sure?" } %>
-
-    </li>
-    <%end %>
-</ul>
+<div class="container mt-4">
+    <h1 class="mb-4">ToDo List</h1>
+    <%= link_to "New Task", new_task_path, class: "btn btn-primary mb-3" %>
+  
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Completed</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @tasks.each do |task| %>
+          <tr>
+            <td><%= task.title %></td>
+            <td><%= task.description %></td>
+            <td><%= task.completed ? "Yes" : "No" %></td>
+            <td>
+              <%= link_to "Edit", edit_task_path(task), class: "btn btn-sm btn-warning" %>
+              <%= link_to "Delete", task_path(task), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-danger" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  
